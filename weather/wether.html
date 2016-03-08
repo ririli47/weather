@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>
+    Wether Report
+  </title>
+
+  <script src = "jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+  <image
+  id = "image"
+  src = "http://openweathermap.org/img/w/04d.png"
+  width = "200" height = "200"
+  >
+  <div>天気：<span id = "text_weather"></span></div>
+  <div>気温：<span id = "text_temp"></span></div>
+
+  <script>
+    	$.ajax({
+      type: "GET",
+      url: "http://api.openweathermap.org/data/2.5/weather?q=tokyo&APPID=ed8826e6adc7db48658bf64cd21d913c&units=metric",
+      dataType: "json"
+    }).done(function(data){
+      $("#text_weather").text(data.weather[0].description);
+      $("#text_temp").text(data.main.temp);
+
+      $("#image").attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png' );
+
+    });
+
+  </script>
+</body>
+</html>

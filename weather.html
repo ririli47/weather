@@ -8,6 +8,18 @@
 </head>
 
 <body>
+
+  <select id = "city">
+    <option value = "tokyo">東京</option>
+    <option value = "tiba">千葉</option>
+    <option value = "hokkaidou">北海道</option>
+    <option value = "okinawa">沖縄</option>
+    <option value = "kobe">神戸</option>
+    <option value = "kanagawa">神奈川</option>
+  </select>
+
+  <input type = "button" value = "更新" onclick = "update()">
+
   <image
   id = "image"
   src = "http://openweathermap.org/img/w/04d.png"
@@ -17,18 +29,21 @@
   <div>気温：<span id = "text_temp"></span></div>
 
   <script>
-    	$.ajax({
+    function update()
+    {
+      $.ajax({
       type: "GET",
-      url: "http://api.openweathermap.org/data/2.5/weather?q=tokyo&APPID=ed8826e6adc7db48658bf64cd21d913c&units=metric",
+      url: "http://api.openweathermap.org/data/2.5/weather?q=" + $("#city").val() + "&APPID=ed8826e6adc7db48658bf64cd21d913c&units=metric",
       dataType: "json"
-    }).done(function(data){
+      }).done(function(data){
       $("#text_weather").text(data.weather[0].description);
       $("#text_temp").text(data.main.temp);
 
       $("#image").attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png' );
 
-    });
-
+      });
+    }
   </script>
+
 </body>
 </html>

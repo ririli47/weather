@@ -1,4 +1,6 @@
 # weather
-issue1
+made from JavaScript
 
-test
+use OpenWetherMap API
+
+Can get temp & weather at all Province
